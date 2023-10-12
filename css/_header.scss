@@ -1,0 +1,112 @@
+// Importing variables and mixins
+@import "./variables_mixins";
+
+// Header style
+header {
+  // Navbar style
+  nav {
+    padding: 1em 0;
+    @include flexbox-row-center-space-between();
+    align-items: baseline !important;
+    text-transform: uppercase;
+    // Navbar title
+    .title {
+      position: relative;
+      color: $nav-font-colour;
+      font-size: 1.50rem;
+      z-index: 1;
+      padding: .25em;
+      margin-top: 2em;
+      text-decoration: none;
+    }
+    .title::after {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      top: -25%;
+      left: -11%;
+      width: 100%;
+      background: #fff;
+      border-radius: 50%;
+      transform: rotate(20deg);
+      transition: 0.4s ease-in-out;
+    }
+
+    .title::before {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-radius: 50%;
+      transform: rotate(-20deg);
+      transition: 0.4s ease-in-out;
+    }
+    // Navbar links
+    .nav-links a {
+      font-size: 1rem;
+      color: $nav-font-colour;
+      text-decoration: none;
+      padding: 0rem 0.75rem;
+      &:hover {
+        transition: 0.3s ease;
+        color: $secondary-colour;
+      }
+    }
+    a.current-link {
+      color: $secondary-colour;
+    }
+    .nav-icon 
+    {
+      display: none;
+    }
+  }
+}
+
+// Mobile devices
+@media (max-width: 768px) {
+  // Navbar style
+  header nav {
+    position: relative;
+    margin: 0 0.5rem;
+    // Navbar icon
+    .nav-icon {
+      display: block;
+      color: $nav-font-colour;
+      font-size: 24px;
+    }
+    // Navbar links
+    .nav-links:not(.active) {
+      display: none;
+    }
+    .nav-links {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #EDEDED;
+      transition: height 500ms ease-in-out;
+      z-index: 1;
+      overflow: hidden;
+      box-shadow: $box-shadow;
+      a {
+        @include flexbox-column();
+        align-items: center;
+        margin-top: 3rem;
+        color: $nav-font-colour;
+      }
+      a:last-child{
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}
